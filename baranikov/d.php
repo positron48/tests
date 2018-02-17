@@ -61,7 +61,7 @@
         $tmp = explode(' ',trim($input[$nodesData[1] + 1 + $i + 1]));
 
         $route[$tmp[0]] = '1';
-        echo '<br>$route<br>';
+        echo $route . PHP_EOL;
 
         if (trim($tmp[2])== '?')
         {

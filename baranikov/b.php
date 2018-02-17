@@ -64,6 +64,6 @@
     }
     //var_dump($output);
     foreach ($output as $line)
-        echo $line . '<br>';
+        echo $line . PHP_EOL;
 
 ?>
