@@ -52,7 +52,7 @@ foreach ($users as $user) {
         $okTest = 0;
         for ($i = 1; $i <= $testsCount; $i++) {
             $id = getId($i);
-            $command = "E:\\dev\\xampp\\php\\php.exe {$source} {$testsFolder}/{$id}.dat";
+            $command = "php\\php.exe {$source} {$testsFolder}/{$id}.dat";
 
             $time = microtime(true);
             $result = shell_exec($command);
@@ -71,7 +71,7 @@ foreach ($users as $user) {
                     $okCount++;
                 }
             }
-            echo "test $i: " . ($okCount == count($standart) ? "OK" : "FAIL") . " $timeCount\n";
+            echo "test $id: " . ($okCount == count($standart) ? "OK  " : "FAIL") . " $timeCount\n";
             if ($okCount == count($standart)) {
                 $okTest++;
             }
