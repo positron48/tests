@@ -57,6 +57,6 @@ $output = '';
 
     file_put_contents('output.txt',$output);
 
-    echo $output . PHP_EOL;
+    echo $output;
 
 ?>

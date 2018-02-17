@@ -51,7 +51,7 @@
         $nodes->setTime($tmp);
 
     }
-    var_dump($nodes);
+    //var_dump($nodes);
     $requestCount = $input[$nodesData[1] + 1];
 
     for ($i = 0 ; $i < $requestCount ; $i++)
@@ -68,7 +68,7 @@
             // find the fastest route
                  //should rewrite data structure
             // should be recursive
-            for ( $i = 0 ; $i < $nodesData[0] )
+            for ( $i = 0 ; $i < $nodesData[0]; $i++ )
             {
                 if ($route[$i] != '1')
                 {
@@ -87,10 +87,10 @@
             // set the time
             $nodes->setTime($tmp);
         }
-        var_dump($route);
+        //var_dump($route);
     }
 
 
-    var_dump($output);
+    //var_dump($output);
 
 ?>

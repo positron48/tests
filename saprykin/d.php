@@ -95,7 +95,7 @@
 
     $r = '';
 	for ($i = 0; $i < count($res); $i++) {
-		$r .= $res[$i]."\r\n";
+		$r .= $res[$i].PHP_EOL;
 	}
 	file_put_contents('output.txt', $r);
 	echo $r;

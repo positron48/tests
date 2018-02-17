@@ -32,7 +32,7 @@
 	}
 	$res = '';
 	for ($i = 0; $i < count($newArr); $i++) {
-		$res .= $newArr[$i]."\r\n";
+		$res .= $newArr[$i].PHP_EOL;
 	}
 	file_put_contents('output.txt', $res);
 	echo $res;
