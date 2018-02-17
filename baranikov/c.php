@@ -49,7 +49,7 @@ function taskC($input)
 
 // common parts
 //$input = file('input_a.txt');
-$input = file('input_c.txt');
+$input = file($argv[1]);
 $output = '';
 
     $output = taskC($input);

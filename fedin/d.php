@@ -79,7 +79,7 @@ class Graph {
     }
 }
 
-$io = new IO();
+$io = new IO($argv[1]);
 $graph = new Graph();
 
 [$nodes, $links] = $io->scanf('%d %d');

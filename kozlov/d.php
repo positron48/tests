@@ -89,7 +89,7 @@ class Graph
     }
 }
 
-$stdin = fopen('php://stdin', 'r');
+$stdin = fopen($argv[1], 'r');
 $stdout = fopen('php://stdout', 'w');
 
 $line = fgets($stdin);

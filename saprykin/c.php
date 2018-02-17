@@ -1,5 +1,5 @@
 <?
-	$inpFile = file('input.txt', FILE_IGNORE_NEW_LINES );
+	$inpFile = file($argv[1], FILE_IGNORE_NEW_LINES );
 	$res = [];
 	for ($i = 0; $i < count($inpFile); $i++) {
         preg_match_all("/<(.*?)>/", $inpFile[$i], $r);
@@ -52,4 +52,5 @@
 		$r .= $res[$i]."\r\n";
 	}
 	file_put_contents('output.txt', $r);
+	echo $res;
 ?>

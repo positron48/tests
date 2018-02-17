@@ -18,7 +18,7 @@
 			}
 		}
 	}
-	$inpFile = file('input.txt', FILE_IGNORE_NEW_LINES );
+	$inpFile = file($argv[1], FILE_IGNORE_NEW_LINES );
 	$n = (int)$inpFile[0];
 	$m = (int)$inpFile[$n];
 
@@ -57,4 +57,5 @@
 	}
 
 	file_put_contents('output.txt', $res);
+	echo $res;
 ?>

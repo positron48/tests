@@ -1,5 +1,5 @@
 <?
-	$inpFile = file('input.txt', FILE_IGNORE_NEW_LINES );
+	$inpFile = file($argv[1], FILE_IGNORE_NEW_LINES );
 	$newArr = [];
 	for ($k = 0; $k < count($inpFile); $k++) {
         $expl = explode(':', $inpFile[$k]);
@@ -35,4 +35,5 @@
 		$res .= $newArr[$i]."\r\n";
 	}
 	file_put_contents('output.txt', $res);
+	echo $res;
 ?>

@@ -7,7 +7,7 @@
 
 require_once 'IO.php';
 
-$io = new IO();
+$io = new IO($argv[1]);
 
 $validators = [
     // string length in range

@@ -2,7 +2,7 @@
 
     // common parts
     //$input = file('input_a.txt');
-    $input = file('input_b.txt');
+    $input = file($argv[1]);
     $output = [];
 
     class Block

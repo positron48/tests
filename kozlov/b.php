@@ -6,7 +6,7 @@
  * Time: 10:19
  */
 
-$stdin = fopen('php://stdin', 'r');
+$stdin = fopen($argv[1], 'r');
 $stdout = fopen('php://stdout', 'w');
 
 while( $line = fgets( $stdin ) ) {

@@ -9,8 +9,8 @@ class IO {
     private $in;
     private $out;
 
-    public function __construct(){
-        $this->in = fopen('php://stdin', 'r');
+    public function __construct($filename){
+        $this->in = fopen($filename, 'r');
         $this->out = fopen('php://stdout', 'w');
     }
 

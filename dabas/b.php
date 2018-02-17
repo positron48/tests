@@ -2,7 +2,7 @@
 //
 // Задача B. Размер имеет значение
 //
-$fp = fopen("input.txt", "r"); // Открываем файл в режиме чтения
+$fp = fopen($argv[1], "r"); // Открываем файл в режиме чтения
 $fpc = fopen("output.txt", "w");
 $arr = array();
 	$i = 0;
@@ -54,6 +54,8 @@ for ($u = 0; $u < count($arr); $u++) {
         $result .= $res;
     }
     $result = substr($result, '0', strlen($result) - 1);
+    echo $result;
+
     fwrite("output.txt", $result."\n");
     fclose($fp);
     fclose($fpc);

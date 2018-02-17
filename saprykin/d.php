@@ -63,7 +63,7 @@
         }
         return $g;
     }
-	$inpFile = file('input.txt', FILE_IGNORE_NEW_LINES );
+	$inpFile = file($argv[1], FILE_IGNORE_NEW_LINES );
 	$res = [];
 
     $n = (int)explode(' ', $inpFile[0])[0];
@@ -98,4 +98,5 @@
 		$r .= $res[$i]."\r\n";
 	}
 	file_put_contents('output.txt', $r);
+	echo $r;
 ?>

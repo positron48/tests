@@ -2,7 +2,7 @@
 error_reporting(0);
 	// common parts
 	//$input = file('input_a.txt');
-	$input = file('input_a.txt');
+	$input = file($argv[1]);
 	//var_dump($input);
 	//task a
 

@@ -5,7 +5,7 @@
  * Date: 17.02.18
  * Time: 11:33
  */
-$stdin = fopen('php://stdin', 'r');
+$stdin = fopen($argv[1], 'r');
 $stdout = fopen('php://stdout', 'w');
 
 class Bet
