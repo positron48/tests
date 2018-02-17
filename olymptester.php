@@ -18,8 +18,9 @@ $sources = [
 ];
 
 foreach ($users as $user) {
-    echo "--".$user.": ".PHP_EOL;
+    echo "-- ".$user.": ".PHP_EOL;
     foreach ($sources as $source => $taskId) {
+        echo "-- task ".$taskId.": ".PHP_EOL;
         $srcOrig = $source;
         $source = $user."/".$source;
         $source = realpath($source);
@@ -55,7 +56,7 @@ foreach ($users as $user) {
             $command = "php\\php.exe {$source} {$testsFolder}/{$id}.dat";
 
             $time = microtime(true);
-            $result = shell_exec($command);
+            $result = execute($command, 120);
             $timeCount = round(microtime(true) - $time, 2);
 
             file_put_contents("{$resultFolder}/{$taskId}/{$id}.ans", $result);
@@ -71,6 +72,8 @@ foreach ($users as $user) {
                     $okCount++;
                 }
             }
+
+            $results[$user][$taskId][$id] = ($okCount == count($standart));
             echo "test $id: " . ($okCount == count($standart) ? "OK  " : "FAIL") . " $timeCount\n";
             if ($okCount == count($standart)) {
                 $okTest++;
@@ -87,4 +90,49 @@ function getId($i) {
         $i = '0' . $i;
     }
     return $i;
+}
+
+function execute($command, $timeout = 5) {
+    $handle = proc_open($command, [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']], $pipe);
+
+    $startTime = microtime(true);
+
+    /* Read the command output and kill it if the proccess surpassed the timeout */
+    $read = '';
+    while(!feof($pipe[1])) {
+        $read .= fread($pipe[1], 8192);
+        if($startTime + $timeout < microtime(true)) {
+            $kill = true;
+            break;
+        }
+    }
+
+    if($kill) {
+        kill(proc_get_status($handle)['pid']);
+        echo " timeout ";
+    }
+    proc_close($handle);
+
+    return $read;
+}
+
+/* The proc_terminate() function doesn't end proccess properly on Windows */
+function kill($pid) {
+    return strstr(PHP_OS, 'WIN') ? exec("taskkill /F /T /PID $pid") : exec("kill -9 $pid");
+}
+
+foreach (['a', 'b', 'c', 'd'] as $task) {
+    echo "task $task:".PHP_EOL;
+    foreach ($users as $user) {
+        echo substr($user, 0, 4)."\t";
+    }
+    echo PHP_EOL;
+
+    foreach ($results['kozlov'][$task] as $key => $tests) {
+        foreach ($users as $user) {
+            echo ($results[$user][$task][$key] ? "OK  ":"FAIL")."\t";
+        }
+        echo PHP_EOL;
+    }
+    echo PHP_EOL;
 }
