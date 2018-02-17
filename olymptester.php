@@ -56,7 +56,7 @@ foreach ($users as $user) {
             $command = "php\\php.exe {$source} {$testsFolder}/{$id}.dat";
 
             $time = microtime(true);
-            $result = execute($command, 120);
+            $result = execute($command, 90);
             $timeCount = round(microtime(true) - $time, 2);
 
             file_put_contents("{$resultFolder}/{$taskId}/{$id}.ans", $result);
@@ -67,7 +67,7 @@ foreach ($users as $user) {
             //echo "#{$i} {$testsFolder}/input{$i}.txt\n";
             foreach ($standart as $lineId => $line) {
                 $ok = false;
-                if ($line == $result[$lineId]) {
+                if (trim($line) == trim($result[$lineId])) {
                     $ok = true;
                     $okCount++;
                 }
