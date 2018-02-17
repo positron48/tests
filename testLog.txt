@@ -1,0 +1,260 @@
+-- baranikov: 
+-- task a: 
+test 001: FAIL 0.03
+test 002: OK   0.03
+test 003: FAIL 0.03
+test 004: OK   0.03
+test 005: FAIL 0.03
+test 006: FAIL 0.05
+test 007: FAIL 0.03
+test 008: FAIL 0.06
+result - 2 из 8
+-- task b: 
+test 001: FAIL 0.02
+test 002: FAIL 0.03
+test 003: FAIL 0.03
+test 004: FAIL 0.03
+test 005: FAIL 0.03
+test 006: FAIL 0.04
+test 007: FAIL 0.04
+test 008: FAIL 0.04
+result - 0 из 8
+-- task c: 
+test 001: FAIL 0.03
+test 002: OK   0.03
+test 003: OK   0.03
+test 004: FAIL 0.03
+test 005: FAIL 0.03
+test 006: OK   0.03
+test 007: OK   0.03
+test 008: FAIL 0.03
+test 009: FAIL 0.03
+test 010: FAIL 0.03
+test 011: FAIL 0.03
+test 012: FAIL 0.03
+test 013: OK   0.03
+test 014: OK   0.03
+result - 6 из 14
+-- task d: 
+test 001: FAIL 0.03
+test 002: FAIL 0.03
+test 003: FAIL 0.03
+test 004: FAIL 0.03
+test 005: FAIL 0.03
+test 006: FAIL 0.03
+test 007: FAIL 0.03
+test 008: FAIL 0.03
+test 009: FAIL 0.03
+result - 0 из 9
+-- dabas: 
+-- task a: 
+file a.php not found
+-- task b: 
+test 001: FAIL 0.03
+test 002: FAIL 0.03
+test 003: FAIL 0.02
+test 004: FAIL 0.03
+test 005: FAIL 0.03
+test 006: FAIL 0.03
+test 007: FAIL 0.03
+test 008: FAIL 0.03
+result - 0 из 8
+-- task c: 
+file c.php not found
+-- task d: 
+file d.php not found
+-- fedin: 
+-- task a: 
+test 001: OK   0.02
+test 002: OK   0.03
+test 003: OK   0.03
+test 004: OK   0.03
+test 005: OK   0.02
+test 006: OK   0.45
+test 007: OK   0.03
+test 008: OK   0.46
+result - 8 из 8
+-- task b: 
+test 001: FAIL 0.03
+test 002: OK   0.05
+test 003: OK   0.04
+test 004: OK   0.04
+test 005: OK   0.03
+test 006: OK   0.03
+test 007: OK   0.05
+test 008: OK   0.04
+result - 7 из 8
+-- task c: 
+test 001: OK   0.03
+test 002: OK   0.03
+test 003: OK   0.03
+test 004: FAIL 0.03
+test 005: OK   0.02
+test 006: OK   0.03
+test 007: OK   0.03
+test 008: FAIL 0.03
+test 009: FAIL 0.03
+test 010: OK   0.03
+test 011: OK   0.02
+test 012: FAIL 0.03
+test 013: OK   0.02
+test 014: OK   0.03
+result - 10 из 14
+-- task d: 
+test 001: OK   0.03
+test 002: OK   0.02
+test 003: OK   0.02
+test 004: OK   0.02
+test 005: FAIL 0.03
+test 006: OK   0.02
+test 007: FAIL 1.66
+ timeout test 008: FAIL 121.12
+ timeout test 009: FAIL 121.93
+result - 5 из 9
+-- kozlov: 
+-- task a: 
+test 001: OK   0.03
+test 002: OK   0.02
+test 003: OK   0.03
+test 004: OK   0.03
+test 005: OK   0.02
+test 006: OK   88.99
+test 007: OK   0.03
+test 008: OK   90.86
+result - 8 из 8
+-- task b: 
+test 001: FAIL 0.03
+test 002: FAIL 0.03
+test 003: FAIL 0.03
+test 004: FAIL 0.03
+test 005: FAIL 0.03
+test 006: FAIL 0.03
+test 007: FAIL 0.04
+test 008: FAIL 0.04
+result - 0 из 8
+-- task c: 
+test 001: OK   0.03
+test 002: OK   0.03
+test 003: FAIL 0.03
+test 004: OK   0.03
+test 005: OK   0.03
+test 006: OK   0.03
+test 007: FAIL 0.03
+test 008: OK   0.02
+test 009: FAIL 0.03
+test 010: FAIL 0.03
+test 011: FAIL 0.03
+test 012: OK   0.03
+test 013: FAIL 0.03
+test 014: FAIL 0.03
+result - 7 из 14
+-- task d: 
+test 001: OK   0.03
+test 002: OK   0.03
+test 003: OK   0.03
+test 004: OK   0.03
+test 005: OK   0.03
+test 006: OK   0.03
+test 007: OK   0.64
+test 008: OK   14.61
+test 009: OK   59.25
+result - 9 из 9
+-- saprykin: 
+-- task a: 
+test 001: OK   0.04
+test 002: OK   0.03
+test 003: OK   0.04
+test 004: OK   0.03
+test 005: OK   0.03
+test 006: OK   47.29
+test 007: FAIL 0.03
+test 008: FAIL 33.13
+result - 6 из 8
+-- task b: 
+test 001: FAIL 0.03
+test 002: FAIL 0.03
+test 003: FAIL 0.03
+test 004: FAIL 0.03
+test 005: FAIL 0.03
+test 006: FAIL 0.03
+test 007: FAIL 0.03
+test 008: FAIL 0.03
+result - 0 из 8
+-- task c: 
+test 001: FAIL 0.03
+test 002: FAIL 0.03
+test 003: FAIL 0.03
+test 004: FAIL 0.03
+test 005: FAIL 0.03
+test 006: FAIL 0.03
+test 007: FAIL 0.03
+test 008: FAIL 0.03
+test 009: FAIL 0.03
+test 010: FAIL 0.02
+test 011: FAIL 0.03
+test 012: FAIL 0.03
+test 013: FAIL 0.03
+test 014: FAIL 0.03
+result - 0 из 14
+-- task d: 
+test 001: FAIL 0.03
+test 002: FAIL 0.03
+test 003: FAIL 0.03
+test 004: FAIL 0.03
+test 005: FAIL 0.02
+test 006: FAIL 0.03
+test 007: FAIL 0.17
+test 008: FAIL 2.12
+test 009: FAIL 5.56
+result - 0 из 9
+task a:
+bara	daba	fedi	kozl	sapr	
+FAIL	FAIL	OK  	OK  	OK  	
+OK  	FAIL	OK  	OK  	OK  	
+FAIL	FAIL	OK  	OK  	OK  	
+OK  	FAIL	OK  	OK  	OK  	
+FAIL	FAIL	OK  	OK  	OK  	
+FAIL	FAIL	OK  	OK  	OK  	
+FAIL	FAIL	OK  	OK  	FAIL	
+FAIL	FAIL	OK  	OK  	FAIL	
+
+task b:
+bara	daba	fedi	kozl	sapr	
+FAIL	FAIL	FAIL	FAIL	FAIL	
+FAIL	FAIL	OK  	FAIL	FAIL	
+FAIL	FAIL	OK  	FAIL	FAIL	
+FAIL	FAIL	OK  	FAIL	FAIL	
+FAIL	FAIL	OK  	FAIL	FAIL	
+FAIL	FAIL	OK  	FAIL	FAIL	
+FAIL	FAIL	OK  	FAIL	FAIL	
+FAIL	FAIL	OK  	FAIL	FAIL	
+
+task c:
+bara	daba	fedi	kozl	sapr	
+FAIL	FAIL	OK  	OK  	FAIL	
+OK  	FAIL	OK  	OK  	FAIL	
+OK  	FAIL	OK  	FAIL	FAIL	
+FAIL	FAIL	FAIL	OK  	FAIL	
+FAIL	FAIL	OK  	OK  	FAIL	
+OK  	FAIL	OK  	OK  	FAIL	
+OK  	FAIL	OK  	FAIL	FAIL	
+FAIL	FAIL	FAIL	OK  	FAIL	
+FAIL	FAIL	FAIL	FAIL	FAIL	
+FAIL	FAIL	OK  	FAIL	FAIL	
+FAIL	FAIL	OK  	FAIL	FAIL	
+FAIL	FAIL	FAIL	OK  	FAIL	
+OK  	FAIL	OK  	FAIL	FAIL	
+OK  	FAIL	OK  	FAIL	FAIL	
+
+task d:
+bara	daba	fedi	kozl	sapr	
+FAIL	FAIL	OK  	OK  	FAIL	
+FAIL	FAIL	OK  	OK  	FAIL	
+FAIL	FAIL	OK  	OK  	FAIL	
+FAIL	FAIL	OK  	OK  	FAIL	
+FAIL	FAIL	FAIL	OK  	FAIL	
+FAIL	FAIL	OK  	OK  	FAIL	
+FAIL	FAIL	FAIL	OK  	FAIL	
+FAIL	FAIL	FAIL	OK  	FAIL	
+FAIL	FAIL	FAIL	OK  	FAIL	
+
