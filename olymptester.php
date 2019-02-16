@@ -3,10 +3,10 @@ error_reporting(E_ERROR);
 
 $users = [
     'baranikov',
-    'dabas',
-    'fedin',
+    'golobokov',
+    'gridnev',
     'kozlov',
-    'saprykin',
+    'stegancev',
 ];
 
 //файл => каталог с данными
@@ -15,6 +15,26 @@ $sources = [
     "b.php" => "b",
     "c.php" => "c",
     "d.php" => "d"
+];
+
+$count = [
+    'a' => 4,
+    'b' => 6,
+    'c' => 4,
+    'd' => 4
+];
+
+$inputs = [
+    'a' => ['.dat'],
+    'b' => ['_sections.xml', '_products.xml'],
+    'c' => ['.dat'],
+    'd' => ['.html']
+];
+$outputs = [
+    'a' => '_output.ans',
+    'b' => '_output.xml',
+    'c' => '_output.png',
+    'd' => '_output.html',
 ];
 
 foreach ($users as $user) {
@@ -36,11 +56,7 @@ foreach ($users as $user) {
             continue;
         }
 
-        $testsCount = count(array_diff(scandir($testsFolder), array(".", ".."))) / 2;
-        if ($testsCount == 0) {
-            echo "В каталоге {$testsFolder} нет данных";
-            continue;
-        }
+        $testsCount = $count[$taskId];
 
         $resultFolder = realpath("result/".$user."/");
         if (!is_dir($resultFolder)) {
@@ -53,35 +69,42 @@ foreach ($users as $user) {
         $okTest = 0;
         for ($i = 1; $i <= $testsCount; $i++) {
             $id = getId($i);
-            $command = "php\\php.exe {$source} {$testsFolder}/{$id}.dat";
+
+            $input = $inputs[$taskId];
+            $command = "php\\php.exe {$source}";
+            foreach ($input as $item) {
+                $command .= " {$testsFolder}/{$id}".$item;
+            }
+            $command .= " {$resultFolder}/{$taskId}/{$id}" . $outputs[$taskId];
+
 
             $time = microtime(true);
             $result = execute($command, 90);
             $timeCount = round(microtime(true) - $time, 2);
 
-            file_put_contents("{$resultFolder}/{$taskId}/{$id}.ans", $result);
-            //echo "{$resultFolder}/{$taskId}/{$id}.ans".PHP_EOL;
-            $result = explode("\n", $result);
-            $standart = explode("\n", trim(file_get_contents("{$testsFolder}/{$id}.ans")));
-            $okCount = 0;
-            //echo "#{$i} {$testsFolder}/input{$i}.txt\n";
-            foreach ($standart as $lineId => $line) {
-                $ok = false;
-                if (trim($line) == trim($result[$lineId])) {
-                    $ok = true;
-                    $okCount++;
-                }
-            }
-
-            $results[$user][$taskId][$id] = ($okCount == count($standart));
-            echo "test $id: " . ($okCount == count($standart) ? "OK  " : "FAIL") . " $timeCount\n";
-            if ($okCount == count($standart)) {
-                $okTest++;
-            }
+//            file_put_contents("{$resultFolder}/{$taskId}/{$id}.ans", $result);
+            echo " {$resultFolder}/{$taskId}/{$id}" . $outputs[$taskId].PHP_EOL;
+//            $result = explode("\n", $result);
+//            $standart = explode("\n", trim(file_get_contents("{$testsFolder}/{$id}.ans")));
+//            $okCount = 0;
+//            //echo "#{$i} {$testsFolder}/input{$i}.txt\n";
+//            foreach ($standart as $lineId => $line) {
+//                $ok = false;
+//                if (trim($line) == trim($result[$lineId])) {
+//                    $ok = true;
+//                    $okCount++;
+//                }
+//            }
+//
+//            $results[$user][$taskId][$id] = ($okCount == count($standart));
+//            echo "test $id: " . ($okCount == count($standart) ? "OK  " : "FAIL") . " $timeCount\n";
+//            if ($okCount == count($standart)) {
+//                $okTest++;
+//            }
         }
-        echo "result - {$okTest} из " . $testsCount . "\n";
+//        echo "result - {$okTest} из " . $testsCount . "\n";
 
-        //echo "Результаты сохранены в каталог {$resultFolder}\n";
+        echo "Результаты сохранены в каталог {$resultFolder}\n";
     }
 }
 function getId($i) {
