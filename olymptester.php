@@ -31,10 +31,10 @@ $inputs = [
     'd' => ['.html']
 ];
 $outputs = [
-    'a' => '_output.ans',
-    'b' => '_output.xml',
-    'c' => '_output.png',
-    'd' => '_output.html',
+    'a' => '.ans',
+    'b' => '_result.xml',
+    'c' => '.png',
+    'd' => '_ans.html',
 ];
 
 foreach ($users as $user) {
@@ -77,7 +77,7 @@ foreach ($users as $user) {
             }
             $command .= " {$resultFolder}/{$taskId}/{$id}" . $outputs[$taskId];
 
-            echo $command . PHP_EOL;
+//            echo $command . PHP_EOL;
 
             $time = microtime(true);
             $result = execute($command, 90);
