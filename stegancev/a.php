@@ -26,34 +26,31 @@ function readTests(){
     $tests = Array();
     $testCounter = 1;
     $flight = null;
-    print_r($fileList);
-    foreach($fileList as $fileName){
-        $realFileName = $directory.$fileName;
-        $handle = fopen($realFileName,"r");
 
-        if(strpos($fileName,"input")!==false){
-            $numberOfFlights = fgets($handle);
-            for($i=0;$i<$numberOfFlights;$i++){
-                $flight = new AirportStructure();
-                $flight->id=$testCounter;
-                $tempString = fgets($handle);
-                $arrayOfInputVars = explode(' ',$tempString);
-                if(checkDateTime($arrayOfInputVars[0])!==null){
-                    $flight->dateOfDepart = checkDateTime($arrayOfInputVars[0]);
-                    $flight->timeZoneDepart = $arrayOfInputVars[1];
-                }
-                if(checkDateTime($arrayOfInputVars[2])!==null){
-                    $flight->dateOfArrive = checkDateTime($arrayOfInputVars[2]);
-                    $flight->timeZoneArrive = $arrayOfInputVars[3];
-                }
-                $testCounter++;
-                $tests[] = $flight;
-            }
+    global $argv;
+    $handle = fopen($argv[1],"r");
+
+    $numberOfFlights = fgets($handle);
+    for($i=0;$i<$numberOfFlights;$i++){
+        $flight = new AirportStructure();
+        $flight->id=$testCounter;
+        $tempString = fgets($handle);
+        $arrayOfInputVars = explode(' ',$tempString);
+        if(checkDateTime($arrayOfInputVars[0])!==null){
+            $flight->dateOfDepart = checkDateTime($arrayOfInputVars[0]);
+            $flight->timeZoneDepart = $arrayOfInputVars[1];
         }
+        if(checkDateTime($arrayOfInputVars[2])!==null){
+            $flight->dateOfArrive = checkDateTime($arrayOfInputVars[2]);
+            $flight->timeZoneArrive = $arrayOfInputVars[3];
+        }
+        $testCounter++;
+        $tests[] = $flight;
     }
+
     //print_r("here");
     $results = Array();
-    $fp = fopen('./tests/output.txt',"w");
+    $fp = fopen($argv[2],"w");
     $id=0;
     $resultString = "";
     foreach($tests as $flight){
@@ -69,8 +66,8 @@ function readTests(){
 function getSeconds($flight){
     $dateTimeOfDepart = $flight->dateOfDepart;
     $dateTimeOfArrive = $flight->dateOfArrive;
-    $timeZoneDepart = str_replace("\r\n","",$flight->timeZoneDepart);
-    $timeZoneArrive = str_replace("\r\n","",$flight->timeZoneArrive);
+    $timeZoneDepart = str_replace("\n","",$flight->timeZoneDepart);
+    $timeZoneArrive = str_replace("\n","",$flight->timeZoneArrive);
     if($timeZoneDepart<0){
         $timeZoneDepart*=-1;
         $dateIntervalStringDepart = 'PT'.$timeZoneDepart.'H';

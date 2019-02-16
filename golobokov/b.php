@@ -1,11 +1,11 @@
 <?php
 $products = new DomDocument("1.0", "utf-8");
-$products->load('products.xml');
+$products->load($argv[2]);
 
 $prod_note = $products->getElementsByTagName("Товар");
 
 $sections = new DomDocument("1.0", "utf-8");
-$sections->load('sections.xml');
+$sections->load($argv[1]);
 
 $result_xml = new DOMDocument("1.0", "utf-8");
 $root = $result_xml->createElement('ЭлементыКаталога');
@@ -35,5 +35,5 @@ if($prod_note->count()!=0)
             }
         }
     }
-$result_xml->save('output.xml');
+$result_xml->save($argv[3]);
 ?>

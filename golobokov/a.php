@@ -1,10 +1,10 @@
 <?php
-$input = file('input.txt');
+$input = file($argv[1]);
 $count = trim($input[0]);
 if($count < 1 || $count>10000)
     return;
 $res = [];
-$fd = fopen("output.txt", 'w');
+$fd = fopen($argv[2], 'w');
 for ($i = 0; $i<$count; $i++) {
     preg_match_all('/\d+.\d+.\d+_\d+:\d+:\d+ [+-]?\d+/', $input[$i + 1], $dates);
     $del = explode(' ', $dates[0][0]);

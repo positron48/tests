@@ -10,7 +10,7 @@ $getLineWithoutBreak = function($handle) {
     }
 };
 
-$input = fopen("input.txt", "r");
+$input = fopen($argv[1], "r");
 
 $eventTypes = [];
 $eventCounters = [];
@@ -79,7 +79,7 @@ if ($input) {
             imagefilledpolygon($canvas, $areaPoints, 3, $color);
         }
 
-        imagepng($canvas, 'output.png');
+        imagepng($canvas, $argv[2]);
     }
 } else {
     throw new \Exception('Input file not found');

@@ -1,6 +1,6 @@
 <?php
 
-$input_handle = fopen('input.txt', 'r');
+$input_handle = fopen($argv[1], 'r');
 $count = (int) fgets($input_handle);    // count of routes
 $stops = 2;     // count of stops in each route
 
@@ -49,7 +49,7 @@ for ($i = 0; $i < $count; $i++) {
 }
 
 // equate sum of routes' time and save it to file
-$output = fopen('output.txt', 'w');
+$output = fopen($argv[2], 'w');
 
 foreach ($diff as $key => $route) {
     $route_time = 0;
@@ -61,4 +61,4 @@ foreach ($diff as $key => $route) {
 }
 fclose($output);
 
-echo file_get_contents('output.txt');
+echo file_get_contents($argv[2]);

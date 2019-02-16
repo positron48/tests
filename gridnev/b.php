@@ -1,7 +1,7 @@
 <?php
 
-$products = simplexml_load_file("products.xml");
-$sections = simplexml_load_file("section.xml");
+$products = simplexml_load_file($argv[2]);
+$sections = simplexml_load_file($argv[1]);
 
 $razdely_id = array();
 $razdely_names = array();
@@ -21,7 +21,7 @@ foreach($products->Товар as $prod_goods) {
     array_push($prod_names, $prod_goods->Наименованние);
 }
  
-$fp = fopen('output.xml', 'a'); 
+$fp = fopen($argv[3], 'a');
 fwrite($fp, '<?xml version="1.0" encoding="UTF-8"?>'); 
 fwrite($fp, '<Элементы Каталога>');
 fwrite($fp, '<Разделы>');

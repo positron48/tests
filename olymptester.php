@@ -44,7 +44,7 @@ foreach ($users as $user) {
         $srcOrig = $source;
         $source = $user."/".$source;
         $source = realpath($source);
-        $testsFolder = "tests/" . $taskId;
+        $testsFolder = realpath("tests/" . $taskId);
 
         if (!file_exists($source)) {
             echo "file {$srcOrig} not found\n";
@@ -71,12 +71,13 @@ foreach ($users as $user) {
             $id = getId($i);
 
             $input = $inputs[$taskId];
-            $command = "php\\php.exe {$source}";
+            $command = "php {$source}";
             foreach ($input as $item) {
                 $command .= " {$testsFolder}/{$id}".$item;
             }
             $command .= " {$resultFolder}/{$taskId}/{$id}" . $outputs[$taskId];
 
+            echo $command . PHP_EOL;
 
             $time = microtime(true);
             $result = execute($command, 90);

@@ -1,7 +1,7 @@
 <?php
 
-$sectionsXml = simplexml_load_file('sections.xml');
-$productsXml = simplexml_load_file('products.xml');
+$sectionsXml = simplexml_load_file($argv[1]);
+$productsXml = simplexml_load_file($argv[2]);
 
 $catalog = new DomDocument('1.0');
 $catalog->encoding = "UTF-8";
@@ -44,4 +44,4 @@ foreach ($sectionsXml as $sectionXml) {
     }
 }
 
-$catalog->save('output.xml');
+$catalog->save($argv[3]);

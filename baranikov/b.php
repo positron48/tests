@@ -1,7 +1,7 @@
 <?php
 
-$products = simplexml_load_file('products.xml');
-$sections = simplexml_load_file('sections.xml');
+$products = simplexml_load_file($argv[2]);
+$sections = simplexml_load_file($argv[1]);
 
 $id_array = array();
 // for each product get section list
@@ -40,4 +40,4 @@ foreach ($sections as $key => $value) {
 }
 
 // save it
-$sections->saveXML('output.xml');
+$sections->saveXML($argv[3]);

@@ -1,15 +1,15 @@
 <?php
 
-$myfile = file("input.txt");
+$myfile = file($argv[1]);
 
 for ($i = 1; $i <= $myfile[0]; $i++) {
-    $fp = fopen('output.txt', 'a'); 
+    $fp = fopen($argv[2], 'a');
     fwrite($fp, calcSec($myfile[$i]) . PHP_EOL);    
     fclose($fp);  
 }
 
 function calcSec($str) {
-    $parsed_string = explode(" ", $str);
+    $parsed_string = explode(" ", str_replace("\n", '', $str));
     if ($parsed_string[1] > 0) {
         $parsed_string[1] = "+" . $parsed_string[1];
     }

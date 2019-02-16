@@ -10,8 +10,8 @@ $getLineWithoutBreak = function($handle) {
     }
 };
 
-$input = fopen("input.txt", "r");
-$output = fopen("output.txt", "w");
+$input = fopen($argv[1], "r");
+$output = fopen($argv[2], "w");
 
 if ($input) {
     $counter = $getLineWithoutBreak($input);

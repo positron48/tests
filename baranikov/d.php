@@ -1,6 +1,6 @@
 <?php
 
-$input = file_get_contents('input.html');
+$input = file_get_contents($argv[1]);
 
 $patterns = array(
     '/([ ]{2,})/i',     // replace more than 2 spaces
@@ -24,4 +24,4 @@ $input = (preg_replace($patterns, $replace, $input));
 
 var_dump($input);
 
-file_put_contents('output.html',$input);
+file_put_contents($argv[2],$input);

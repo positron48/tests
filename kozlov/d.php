@@ -1,7 +1,7 @@
 <?php
 
 
-$document = file_get_contents('input.html');
+$document = file_get_contents($argv[1]);
 $document = preg_replace('/>\s+<+/', '><', $document);
 $document = preg_replace('/<!--[^(skip=delete)].*?-->/', '', $document);
 
@@ -17,4 +17,4 @@ foreach ($scriptFragments[0] as $scriptFragment) {
     }
 }
 
-file_put_contents('output.html', $document);
+file_put_contents($argv[2], $document);
