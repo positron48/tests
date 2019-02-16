@@ -143,7 +143,7 @@ function execute($command, $timeout = 5) {
 function kill($pid) {
     return strstr(PHP_OS, 'WIN') ? exec("taskkill /F /T /PID $pid") : exec("kill -9 $pid");
 }
-
+/*
 foreach (['a', 'b', 'c', 'd'] as $task) {
     echo "task $task:".PHP_EOL;
     foreach ($users as $user) {
