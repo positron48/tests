@@ -1,0 +1,12 @@
+Example\Namespace\TestClass
+./vendor/example/lib/test_class.php
+./vendor/example/classes/namespace/test_class.php
+
+Example\TestClass
+./vendor/example/classes/test_class.php
+
+Example\TestPDF\PDFTest
+./vendor/example/classes/test_pdf/pdftest.php
+
+ExampleNotFound\TestClass
+

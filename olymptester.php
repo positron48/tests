@@ -2,11 +2,8 @@
 error_reporting(E_ERROR);
 
 $users = [
-    'baranikov',
-    'golobokov',
-    'gridnev',
     'kozlov',
-    'stegancev',
+    'ignashov'
 ];
 
 //файл => каталог с данными
@@ -18,23 +15,23 @@ $sources = [
 ];
 
 $count = [
-    'a' => 4,
-    'b' => 6,
-    'c' => 4,
-    'd' => 4
+    'a' => 8,
+    'b' => 10,
+    'c' => 5,
+    'd' => 8
 ];
 
 $inputs = [
     'a' => ['.dat'],
-    'b' => ['_sections.xml', '_products.xml'],
+    'b' => ['.dat'],
     'c' => ['.dat'],
-    'd' => ['.html']
+    'd' => ['.dat']
 ];
 $outputs = [
     'a' => '.ans',
-    'b' => '_result.xml',
-    'c' => '.png',
-    'd' => '_ans.html',
+    'b' => '.ans',
+    'c' => '.ans',
+    'd' => '.ans',
 ];
 
 foreach ($users as $user) {
@@ -58,12 +55,10 @@ foreach ($users as $user) {
 
         $testsCount = $count[$taskId];
 
-        $resultFolder = realpath("result/".$user."/");
-        if (!is_dir($resultFolder)) {
-            if (!mkdir($resultFolder)) {
-                echo "error creating catalog {$resultFolder}\n";
-                continue;
-            }
+        $resultFolder = realpath("result/") . "/" . $user."/";
+        if (!is_dir($resultFolder) && !mkdir($resultFolder)) {
+            echo "error creating catalog {$resultFolder}\n";
+            continue;
         }
 
         $okTest = 0;
@@ -83,31 +78,54 @@ foreach ($users as $user) {
             $result = execute($command, 90);
             $timeCount = round(microtime(true) - $time, 2);
 
-//            file_put_contents("{$resultFolder}/{$taskId}/{$id}.ans", $result);
-            echo " {$resultFolder}/{$taskId}/{$id}" . $outputs[$taskId].PHP_EOL;
-//            $result = explode("\n", $result);
-//            $standart = explode("\n", trim(file_get_contents("{$testsFolder}/{$id}.ans")));
-//            $okCount = 0;
-//            //echo "#{$i} {$testsFolder}/input{$i}.txt\n";
-//            foreach ($standart as $lineId => $line) {
-//                $ok = false;
-//                if (trim($line) == trim($result[$lineId])) {
-//                    $ok = true;
-//                    $okCount++;
-//                }
-//            }
-//
-//            $results[$user][$taskId][$id] = ($okCount == count($standart));
-//            echo "test $id: " . ($okCount == count($standart) ? "OK  " : "FAIL") . " $timeCount\n";
-//            if ($okCount == count($standart)) {
-//                $okTest++;
-//            }
+            if (!is_dir("{$resultFolder}/{$taskId}/") && !mkdir("{$resultFolder}/{$taskId}/")) {
+                echo "error creating catalog {$resultFolder}/{$taskId}\n";
+            }
+            file_put_contents("{$resultFolder}/{$taskId}/{$id}.ans", $result);
+
+//            echo " {$resultFolder}/{$taskId}/{$id}" . $outputs[$taskId].PHP_EOL;
+            $result = explode("\n", $result);
+            $standart = explode("\n", trim(file_get_contents("{$testsFolder}/{$id}.ans")));
+            $okCount = 0;
+
+//            echo "#{$i} {$testsFolder}/input{$i}.txt\n";
+            foreach ($standart as $lineId => $line) {
+                $ok = false;
+                if (trim($line) == trim($result[$lineId])) {
+                    $ok = true;
+                    $okCount++;
+                }
+            }
+
+            $results[$user][$taskId][$id] = ($okCount == count($standart));
+            echo "test $id: " . ($okCount == count($standart) ? "OK  " : "FAIL") . " $timeCount\n";
+            if ($okCount == count($standart)) {
+                $okTest++;
+            }
         }
-//        echo "result - {$okTest} из " . $testsCount . "\n";
+        echo "result - {$okTest} из " . $testsCount . "\n";
 
         echo "Результаты сохранены в каталог {$resultFolder}\n";
     }
 }
+
+foreach (['a', 'b', 'c', 'd'] as $task) {
+    echo "task $task:".PHP_EOL;
+    foreach ($users as $user) {
+        echo substr($user, 0, 4)."\t";
+    }
+    echo PHP_EOL;
+
+    foreach ($results['kozlov'][$task] as $key => $tests) {
+        foreach ($users as $user) {
+            echo ($results[$user][$task][$key] ? "OK  ":"FAIL")."\t";
+        }
+        echo PHP_EOL;
+    }
+    echo PHP_EOL;
+}
+
+
 function getId($i) {
     $i = (string) $i;
     while(strlen($i) < 3){
@@ -143,20 +161,4 @@ function execute($command, $timeout = 5) {
 /* The proc_terminate() function doesn't end proccess properly on Windows */
 function kill($pid) {
     return strstr(PHP_OS, 'WIN') ? exec("taskkill /F /T /PID $pid") : exec("kill -9 $pid");
-}
-/*
-foreach (['a', 'b', 'c', 'd'] as $task) {
-    echo "task $task:".PHP_EOL;
-    foreach ($users as $user) {
-        echo substr($user, 0, 4)."\t";
-    }
-    echo PHP_EOL;
-
-    foreach ($results['kozlov'][$task] as $key => $tests) {
-        foreach ($users as $user) {
-            echo ($results[$user][$task][$key] ? "OK  ":"FAIL")."\t";
-        }
-        echo PHP_EOL;
-    }
-    echo PHP_EOL;
 }

@@ -1,47 +1,45 @@
 <?php
 
-$sectionsXml = simplexml_load_file($argv[1]);
-$productsXml = simplexml_load_file($argv[2]);
+const REGEXPS = [
+    1 => '/0\d{7}/',
+    2 => '/110\d{5}10\d{6}/',
+    3 => '/1110\d{4}(10\d{6}){2}/',
+    4 => '/11110\d{3}(10\d{6}){3}/',
+];
 
-$catalog = new DomDocument('1.0');
-$catalog->encoding = "UTF-8";
-$catalog->formatOutput = true;
-
-$elementsOutput = $catalog->appendChild($catalog->createElement('ЭлементыКаталога'));
-$sectionsOutput = $elementsOutput->appendChild($catalog->createElement('Разделы'));
-
-//Генерация разделов
-foreach ($sectionsXml as $sectionXml) {
-    $sectionId = $sectionXml->Ид;
-
-    $sectionOutput = $sectionsOutput->appendChild($catalog->createElement('Раздел'));
-
-    $sectionIdOutput = $sectionOutput->appendChild($catalog->createElement('Ид'));
-    $sectionIdOutput->appendChild($catalog->createTextNode($sectionId));
-
-    $sectionNameOutput = $sectionOutput->appendChild($catalog->createElement('Наименование'));
-    $sectionNameOutput->appendChild($catalog->createTextNode($sectionXml->Наименование));
-
-    $sectionProductsOutput = $sectionOutput->appendChild($catalog->createElement('Товары'));
-
-    //склейка с товарами
-    foreach ($productsXml as $productXml) {
-        foreach ($productXml->Разделы as $productSectionXml) {
-            if ($sectionId == (string) $productSectionXml->ИдРаздела[0]) {
-                $sectionSingleProductOutput = $sectionProductsOutput->appendChild($catalog->createElement('Товар'));
-
-                $sectionSingleProductIdOutput = $sectionSingleProductOutput->appendChild($catalog->createElement('Ид'));
-                $sectionSingleProductIdOutput->appendChild($catalog->createTextNode($productXml->Ид));
-
-                $sectionSingleProductNameOutput = $sectionSingleProductOutput->appendChild($catalog->createElement('Наименование'));
-                $sectionSingleProductNameOutput->appendChild($catalog->createTextNode($productXml->Наименование));
-
-                $sectionSingleProductArticleOutput = $sectionSingleProductOutput->appendChild($catalog->createElement('Артикул'));
-                $sectionSingleProductArticleOutput->appendChild($catalog->createTextNode($productXml->Артикул));
-
-            }
-        }
+function validate(string $bytes, int $bytesAmount): bool
+{
+    if ($bytesAmount > 4 || $bytesAmount < 1) {
+        throw new \InvalidArgumentException();
     }
+
+    return preg_match(REGEXPS[$bytesAmount], $bytes);
 }
 
-$catalog->save($argv[3]);
+$input = fopen($argv[1], 'r');
+
+$line = trim(fgets($input));
+
+$success = true;
+
+$currentChar = 0;
+while ($currentChar < strlen($line)) {
+    for ($j = 4; $j >= 1; $j--) {
+        if (validate(substr($line, $currentChar, 8 * $j), $j)) {
+            $currentChar += 8 * $j;
+            continue 2;
+        }
+    }
+
+    $success = false;
+
+    break;
+}
+
+if ($success) {
+    echo 'Y';
+} else {
+    echo 'N';
+}
+
+fclose($input);

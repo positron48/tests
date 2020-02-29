@@ -1,0 +1,9 @@
+Example\Namespace\TestClass
+./vendor/example/lib/testclass.php
+./vendor/example/classes/namespace/testclass.php
+
+Example\TestClass
+./vendor/example/classes/testclass.php
+
+ExampleNotFound\TestClass
+

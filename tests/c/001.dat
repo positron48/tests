@@ -1,0 +1,4 @@
+[{"base_dir":"./vendor/example/lib/","namespace":"Example\\Namespace","type":"default"},{"base_dir":"./vendor/example/classes/","namespace":"Example","type":"default"}]
+Example\Namespace\TestClass
+Example\TestClass
+ExampleNotFound\TestClass
